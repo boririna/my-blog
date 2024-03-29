@@ -2,7 +2,7 @@ import { getUser } from './get-user';
 import { addUser } from './add-user';
 import { createSession } from './create-session';
 
-export const sever = {
+export const server = {
 	async authorize(authLogin, authPassword) {
 		const user = await getUser(authLogin);
 

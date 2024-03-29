@@ -22,7 +22,9 @@ const FooterContainer = ({ className }) => {
 		<div className={className}>
 			<div>
 				<p>Блог веб-разработчика</p>
-				<div>i.a.borisova@gmail.com</div>
+				<a href="mailto:i.a.borisova@gmail.com" target="_blank" rel="noreferrer">
+					i.a.borisova@gmail.com
+				</a>
 			</div>
 			<div>
 				<div>
