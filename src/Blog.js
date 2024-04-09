@@ -16,16 +16,12 @@ const Content = styled.div`
 	padding: 120px 0;
 	height: 2000px;
 `;
-const H2 = styled.h2`
-	text-align: center;
-`;
 
 export const Blog = () => {
 	return (
 		<AppColumn>
 			<Header />
 			<Content>
-				<H2>Контент страницы</H2>
 				<Routes>
 					<Route path="/" element={<div>Главная страница</div>} />
 					<Route path="/login" element={<Authorisation />} />
