@@ -30,12 +30,6 @@ const UserName = styled.div`
 	font-weight: bold;
 `;
 
-const StyledLogoutIcon = styled.div`
-	&:hover {
-		cursor: pointer;
-	}
-`;
-
 const ControlPanelContainer = ({ className }) => {
 	const navigate = useNavigate();
 	const roleId = useSelector(selectUserRole);
@@ -53,14 +47,12 @@ const ControlPanelContainer = ({ className }) => {
 				) : (
 					<>
 						<UserName>{login}</UserName>
-						<StyledLogoutIcon>
-							<Icon
-								id="fa-sign-out"
-								size="18px"
-								margin="0 0 0 10px"
-								onClick={() => dispatch(logout(session))}
-							/>
-						</StyledLogoutIcon>
+						<Icon
+							id="fa-sign-out"
+							size="18px"
+							margin="0 0 0 10px"
+							onClick={() => dispatch(logout(session))}
+						/>
 					</>
 				)}
 			</RightAlignedUp>
