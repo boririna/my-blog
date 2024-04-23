@@ -1,28 +1,35 @@
 {
   "users": [
     {
-      "id": "3612",
+      "id": "d9e8",
       "login": "irina",
       "password": "123456",
-      "registered_at": "2033-09-19 13:10",
+      "registered_at": "2046-06-05 08:29",
       "role_id": 0
+    },
+    {
+      "id": "b2ee",
+      "login": "ben",
+      "password": "123456",
+      "registered_at": "2045-08-13 19:16",
+      "role_id": 2
     }
   ],
   "roles": [
     {
-      "id": 0,
+      "id": "0",
       "name": "Администратор"
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "Модератор"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Читатель"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Гость"
     }
   ],
@@ -91,5 +98,88 @@
       "published_at": "2014-03-30"
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "id": "ab0e",
+      "author_id": null,
+      "post_id": "001",
+      "published_at": "2052-10-30 22:35",
+      "content": "dsfsdfsdfsdf"
+    },
+    {
+      "id": "2699",
+      "author_id": null,
+      "post_id": "001",
+      "published_at": "2053-08-26 21:16",
+      "content": "ssgdfgdfg"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "9394",
+      "hash": "0.35086639192709112577972518920432776212692260742188",
+      "user": {
+        "id": "d9e8",
+        "login": "irina",
+        "password": "123456",
+        "registeredAt": "2046-06-05 08:29",
+        "roleId": 0
+      }
+    },
+    {
+      "id": "dc3e",
+      "hash": "0.91297676215657919129853326012380421161651611328125",
+      "user": {
+        "id": "d9e8",
+        "login": "irina",
+        "password": "123456",
+        "registeredAt": "2046-06-05 08:29",
+        "roleId": 0
+      }
+    },
+    {
+      "id": "cb6e",
+      "hash": "0.29573063719688885697678415453992784023284912109375",
+      "user": {
+        "id": "d9e8",
+        "login": "irina",
+        "password": "123456",
+        "registeredAt": "2046-06-05 08:29",
+        "roleId": 0
+      }
+    },
+    {
+      "id": "34f4",
+      "hash": "0.63339842100160437254885437141638249158859252929688",
+      "user": {
+        "id": "d9e8",
+        "login": "irina",
+        "password": "123456",
+        "registeredAt": "2046-06-05 08:29",
+        "roleId": 0
+      }
+    },
+    {
+      "id": "a119",
+      "hash": "0.70380181108632133835101285512791946530342102050781",
+      "user": {
+        "id": "d9e8",
+        "login": "irina",
+        "password": "123456",
+        "registeredAt": "2046-06-05 08:29",
+        "roleId": 0
+      }
+    },
+    {
+      "id": "dd6e",
+      "hash": "0.05008640488014726166454693156993016600608825683594",
+      "user": {
+        "id": "d9e8",
+        "login": "irina",
+        "password": "123456",
+        "registeredAt": "2046-06-05 08:29",
+        "roleId": 0
+      }
+    }
+  ]
 }

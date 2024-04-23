@@ -37,6 +37,11 @@ const ControlPanelContainer = ({ className }) => {
 	const dispatch = useDispatch();
 	const session = useSelector(selectUserSession);
 
+	const onLogout = () => {
+		dispatch(logout(session));
+		sessionStorage.removeItem('userData');
+	};
+
 	return (
 		<div className={className}>
 			<RightAlignedUp>
@@ -51,12 +56,13 @@ const ControlPanelContainer = ({ className }) => {
 							id="fa-sign-out"
 							size="18px"
 							margin="0 0 0 10px"
-							onClick={() => dispatch(logout(session))}
+							onClick={onLogout}
 						/>
 					</>
 				)}
 			</RightAlignedUp>
-			<RightAlignedDown align-items="end">
+			{/* Было вот так, но вызывало предупреждение из-за пропа align-items <RightAlignedDown align-items="end"> */}
+			<RightAlignedDown>
 				<Link onClick={() => navigate(-1)}>
 					<Icon id="fa-arrow-left" size="18px" margin="10px 20px 0 0" />
 				</Link>

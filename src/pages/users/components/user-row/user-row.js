@@ -1,3 +1,4 @@
+import React from 'react';
 import { Icon } from '../../../../components';
 import { useDispatch } from 'react-redux';
 import { TableRow } from '../table-row/table-row';
@@ -30,7 +31,7 @@ const UserRowContainer = ({
 	};
 
 	const isSaveButtonDisabled = selectedRoleId === userRoleId;
-
+	// @ts-ignore
 	return (
 		<div className={className}>
 			<TableRow border={true}>
@@ -53,6 +54,7 @@ const UserRowContainer = ({
 					/>
 				</div>
 			</TableRow>
+
 			<Icon
 				id="fa-trash-o"
 				size="18px"
@@ -65,4 +67,5 @@ const UserRowContainer = ({
 
 export const UserRow = styled(UserRowContainer)`
 	display: flex;
+	margin: 10px 0 0 0;
 `;

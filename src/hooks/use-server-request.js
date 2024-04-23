@@ -1,24 +1,23 @@
 import { useSelector } from 'react-redux';
 import { server } from '../bff';
 import { selectUserSession } from '../selectors';
-import { typedefs } from '../typedefs';
 import { useCallback } from 'react';
 
-/**
- *
- * @param {string} operation
- * @param  {...any} params
- * @returns {EndpointReturn}
- */
 export const useServerRequest = () => {
 	const session = useSelector(selectUserSession);
 
-	// useCallback makes this function with the same reference unless session: string value changes
+	// useCallback makes this function with the same reference unless session: string value changes, so it doesn't rerender unless session has changed
 	return useCallback(
+		/**
+		 *
+		 * @param {string} operation
+		 * @param  {...any} params
+		 * @returns {EndpointReturn}
+		 */
 		(operation, ...params) => {
 			// if operation in ['register', 'authorize'] we don't send a session
-			/** @type {string} - one of register, authorize */
-			const request = ['register', 'authorize'].includes(operation)
+			/** @type {Array} - one of register, authorize */
+			const request = ['register', 'authorize', 'fetchPost'].includes(operation)
 				? params
 				: [session, ...params];
 			// server: object with functions like 'authorize', 'logout'
@@ -26,7 +25,7 @@ export const useServerRequest = () => {
 
 			let endpoint_function = server[operation];
 			// operation_handler;
-			/** @type {typedefs.EndpointReturn} */
+			/** @type {EndpointReturn} */
 			let ret = endpoint_function(...request);
 			return ret;
 		},

@@ -7,7 +7,7 @@ const TableRowContainer = ({ children, className }) => (
 export const TableRow = styled(TableRowContainer)`
 	display: flex;
 	border: ${({ border }) => (border ? '1px solid #000' : 'none')};
-	margin-top: 10px;
+
 	padding: 3px;
 	border-radius: 3px;
 

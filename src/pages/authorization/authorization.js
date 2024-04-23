@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -37,6 +38,11 @@ const StyledLink = styled(Link)`
 	font-size: 18px;
 `;
 
+/**
+ *
+ * @param {string} [className]
+ * @returns
+ */
 export const AuthorizationContainer = ({ className }) => {
 	const {
 		register,
@@ -67,6 +73,7 @@ export const AuthorizationContainer = ({ className }) => {
 			}
 
 			dispatch(setUser(res));
+			sessionStorage.setItem('userData', JSON.stringify(res));
 		});
 	};
 
@@ -90,6 +97,7 @@ export const AuthorizationContainer = ({ className }) => {
 					})}
 				/>
 				<Input
+					// @ts-ignore
 					type="password"
 					placeholder="Пароль..."
 					{...register('password', {

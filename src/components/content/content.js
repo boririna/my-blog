@@ -7,6 +7,7 @@ const Div = styled.div`
 	align-items: center;
 `;
 
+// shows error when there is no access to data due to a specific role
 export const Content = ({ children, error }) => {
 	return error ? (
 		<Div>

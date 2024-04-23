@@ -1,3 +1,4 @@
+// @ts-check
 import { getUser } from '../api';
 import { sessions } from '../sessions';
 import { typedefs } from '../../typedefs';
@@ -5,7 +6,7 @@ import { typedefs } from '../../typedefs';
 /** authorize
  * @param {string} authLogin - login
  * @param {string} authPassword - password
- * @returns {EndpointReturn}
+ * @returns
  */
 export const authorize = async (authLogin, authPassword) => {
 	const user = await getUser(authLogin);
@@ -17,7 +18,7 @@ export const authorize = async (authLogin, authPassword) => {
 		};
 	}
 
-	const { id, login, password, roleId } = user;
+	const { id, login, roleId } = user;
 
 	if (authPassword !== user.password) {
 		return {
