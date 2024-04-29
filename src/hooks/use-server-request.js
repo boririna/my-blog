@@ -26,6 +26,7 @@ export const useServerRequest = () => {
 			let endpoint_function = server[operation];
 			// operation_handler;
 			/** @type {EndpointReturn} */
+
 			let ret = endpoint_function(...request);
 			return ret;
 		},

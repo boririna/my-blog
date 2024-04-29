@@ -17,6 +17,7 @@ const UsersContainer = ({ className }) => {
 		Promise.all([requestServer('fetchUsers'), requestServer('fetchRoles')]).then(
 			([usersRes, rolesRes]) => {
 				// early return if there are errors
+
 				if (usersRes.error || rolesRes.error) {
 					setErrorMessage(usersRes.error || rolesRes.error);
 					return;
