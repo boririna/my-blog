@@ -9,6 +9,7 @@ export const sessions = {
 	},
 	async remove(hash) {
 		const session = await getSession(hash);
+		console.log('session in remove', session);
 		if (!session) {
 			return;
 		}
@@ -18,7 +19,6 @@ export const sessions = {
 		const dbSession = await getSession(hash);
 
 		console.log('dbSession', dbSession);
-
 		return !!dbSession.user && accessRoles.includes(dbSession.user.roleId);
 	},
 };
