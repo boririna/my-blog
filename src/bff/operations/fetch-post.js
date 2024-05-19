@@ -1,6 +1,13 @@
 import { getPost, getUsers } from '../api';
 import { getComments } from '../api/get-comments';
 
+/**
+ * Fetches a post and its associated comments with author information.
+ *
+ * @param {string} postId - The unique identifier of the post to fetch.
+ * @returns {Promise<{ error: null | Error, res: PostWithComments }>} - A promise resolving to an object with error and response data.
+ */
+
 export const fetchPost = async (postId) => {
 	const post = await getPost(postId);
 
@@ -16,8 +23,6 @@ export const fetchPost = async (postId) => {
 			author: user?.login,
 		};
 	});
-
-	console.log(commentsWithAuthor);
 
 	return {
 		error: null,

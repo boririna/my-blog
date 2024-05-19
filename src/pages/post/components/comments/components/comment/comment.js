@@ -1,7 +1,17 @@
 import styled from 'styled-components';
 import { Icon } from '../../../../../../components';
+import { removeCommentAsync } from '../../../../../../actions';
+import { useDispatch } from 'react-redux';
+import { useServerRequest } from '../../../../../../hooks';
 
-const CommentContainer = ({ className, id, author, content, publishedAt }) => {
+const CommentContainer = ({ className, postId, id, author, content, publishedAt }) => {
+	const dispatch = useDispatch();
+	const requestServer = useServerRequest();
+
+	const onCommentRemove = (id) => {
+		dispatch(removeCommentAsync(requestServer, postId, id));
+	};
+
 	return (
 		<div className={className}>
 			<div className="comment">
@@ -13,7 +23,7 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
 							margin="0 10px 0 0"
 							onClick={() => {}}
 						/>
-						{author}
+						<p>{author}</p>
 					</div>
 					<div className="published-at">
 						<Icon
@@ -22,12 +32,17 @@ const CommentContainer = ({ className, id, author, content, publishedAt }) => {
 							margin="0 10px 0 0"
 							onClick={() => {}}
 						/>
-						{publishedAt}
+						<p>{publishedAt}</p>
 					</div>
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
-			<Icon id="fa-trash-o" size="21px" margin="0 0 0 10px" onClick={() => {}} />
+			<Icon
+				id="fa-trash-o"
+				size="21px"
+				margin="0 0 0 10px"
+				onClick={() => onCommentRemove(id)}
+			/>
 		</div>
 	);
 };
@@ -39,7 +54,8 @@ export const Comment = styled(CommentContainer)`
 
 	& .comment {
 		width: 550px;
-		border: 1px solid #000;
+		// border: 1px solid #000;
+		background-color: #eaecec;
 		padding: 5px 10px;
 	}
 
@@ -50,9 +66,11 @@ export const Comment = styled(CommentContainer)`
 
 	& .author {
 		display: flex;
+		align-items: center;
 	}
 
 	& .published-at {
 		display: flex;
+		align-items: center;
 	}
 `;

@@ -19,7 +19,7 @@ const PostContentContainer = ({
 						cursor="initial"
 						onClick={() => {}}
 					/>
-					{publishedAt}
+					<p>{publishedAt}</p>
 				</div>
 				<div className="buttons">
 					<Icon

@@ -114,13 +114,6 @@
       "content": "Классная статья!"
     },
     {
-      "id": "9279",
-      "author_id": "d9e8",
-      "post_id": "001",
-      "published_at": "2058-02-16 01:03",
-      "content": ""
-    },
-    {
       "id": "bd3b",
       "author_id": "d9e8",
       "post_id": "001",
@@ -128,31 +121,17 @@
       "content": "Привет! Ниче не поняла"
     },
     {
-      "id": "951a",
+      "id": "a9a1",
       "author_id": "d9e8",
       "post_id": "001",
-      "published_at": "2048-09-06 14:57",
-      "content": "Hoi"
-    },
-    {
-      "id": "d601",
-      "author_id": "d9e8",
-      "post_id": "001",
-      "published_at": "2064-11-19 08:29",
-      "content": "sdfsdfsdf"
-    },
-    {
-      "id": "fcf5",
-      "author_id": "d9e8",
-      "post_id": "001",
-      "published_at": "2044-02-02 00:55",
-      "content": "sfsdfsdf"
+      "published_at": "2060-11-06 10:26",
+      "content": "Пиши есче!"
     }
   ],
   "sessions": [
     {
-      "id": "95e3",
-      "hash": "0.39291050637334090644969819550169631838798522949219",
+      "id": "bce1",
+      "hash": "0.48459544867996795503017892770003527402877807617188",
       "user": {
         "id": "d9e8",
         "login": "irina",
