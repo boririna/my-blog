@@ -6,7 +6,7 @@ import { setPostData } from './set-post-data';
 // 	});
 // };
 
-// Sends a request for a operatin to remove a commentin the store and recieve updated data of this post
+// Sends a request for a operatin to remove a comment in the store and recieve updated data of this post
 
 export const removeCommentAsync = (requestServer, postId, id) => {
 	return (dispatch) => {

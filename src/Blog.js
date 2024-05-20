@@ -54,7 +54,7 @@ export const Blog = ({ className }) => {
 				</Routes>
 			</Page>
 			<Footer />
-			<Modal />
+			{<Modal />}
 		</AppColumn>
 	);
 };

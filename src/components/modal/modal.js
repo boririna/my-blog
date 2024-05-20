@@ -14,15 +14,15 @@ const ModalContainer = ({ className }) => {
 	const onConfirm = useSelector(selectModalOnConfirm);
 	const onCancel = useSelector(selectModalOnCancel);
 
-	// if (!isOpen) {
-	// 	return null;
-	// }
+	if (!isOpen) {
+		return null;
+	}
 
 	return (
 		<div className={className}>
 			<div className="overlay"></div>
 			<div className="box">
-				<h3>Удалить комментарий?{text}</h3>
+				<h3>{text}</h3>
 				<div className="buttons">
 					<Button width="120px" onClick={onConfirm}>
 						Да
@@ -46,7 +46,7 @@ export const Modal = styled(ModalContainer)`
 	display: flex;
 
 	& .overlay {
-		position: fixed;
+		position: absolute;
 		background-color: rgba(0, 0, 0, 0.5);
 		width: 100%;
 		height: 100%;
@@ -57,7 +57,7 @@ export const Modal = styled(ModalContainer)`
 		z-index: 30;
 		width: 300px;
 		background-color: white;
-		padding: 20px 20px;
+		padding: 0 20px 20px;
 		margin: auto;
 		text-align: center;
 	}
