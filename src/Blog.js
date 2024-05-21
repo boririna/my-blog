@@ -5,6 +5,7 @@ import { Authorisation, Registration, Users, Post } from './pages';
 import { setUser } from './actions';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { PostForm } from './pages/post/components';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -49,7 +50,8 @@ export const Blog = ({ className }) => {
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
 					<Route path="/post" element={<div>Новая статья</div>} />
-					<Route path="/posts/:id" element={<Post />} />
+					<Route path="/post/:id" element={<Post />} />
+					<Route path="/post/:id/edit" element={<PostForm />} />
 					<Route path="*" element={<div>Ошибка</div>} />
 				</Routes>
 			</Page>
