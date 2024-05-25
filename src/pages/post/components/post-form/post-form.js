@@ -2,16 +2,26 @@ import styled from 'styled-components';
 import { H2 } from '../../../../components/h2/h2';
 import { Icon, Input } from '../../../../components';
 
+/**
+ * @param {string} className
+ * @param {PostInfo} post
+ * @returns {React.ReactElement}
+ */
 const PostFormContainer = ({
 	className,
-	post: { id, title, imageUrl, content, publishedAt },
+	// post: { id, title, imageUrl, content, publishedAt },
+	post,
 }) => {
+	if (post === undefined) {
+		return <div>POST UNDEFINED</div>;
+	}
+	console.log('title', post.title);
 	return (
 		<div className={className}>
-			<Input defaultValue={imageUrl} />
-			<Input defaultValue={title} />
-			<img src={imageUrl} alt={title} />
-			<H2>{title}</H2>
+			<Input defaultValue={post.imageUrl} />
+			<Input defaultValue={post.title} />
+			<img src={post.imageUrl} alt={post.title} />
+			<H2>{post.title}</H2>
 			<div className="special-panel">
 				<div className="published-at">
 					<Icon
@@ -21,7 +31,7 @@ const PostFormContainer = ({
 						cursor="initial"
 						onClick={() => {}}
 					/>
-					<p>{publishedAt}</p>
+					<p>{post.publishedAt}</p>
 				</div>
 				<div className="buttons">
 					<Icon
@@ -38,7 +48,7 @@ const PostFormContainer = ({
 					/>
 				</div>
 			</div>
-			<div className="post-text">{content}</div>
+			<div className="post-text">{post.content}</div>
 		</div>
 	);
 };

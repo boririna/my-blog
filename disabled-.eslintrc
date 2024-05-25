@@ -1,0 +1,8 @@
+{
+	 "rules": {
+    "jsdoc/no-undefined-types": 1
+	},
+	"plugins": [
+    	"jsdoc"
+	]
+}

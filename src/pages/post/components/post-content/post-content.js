@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 import { H2 } from '../../../../components/h2/h2';
 import { Icon } from '../../../../components';
+import { PostInfo } from '../../../../classes/post_info';
 
+/**
+ * @param {string} className
+ * @param {PostInfo} post
+ * @returns {React.ReactElement}
+ */
 const PostContentContainer = ({
 	className,
-	post: { id, title, imageUrl, content, publishedAt },
+	post,
+	// post: { id, title, imageUrl, content, publishedAt },
 }) => {
 	return (
 		<div className={className}>
-			<img src={imageUrl} alt={title} />
-			<H2>{title}</H2>
+			<img src={post.imageUrl} alt={post.title} />
+			<H2>{post.title}</H2>
 			<div className="special-panel">
 				<div className="published-at">
 					<Icon
@@ -19,7 +26,7 @@ const PostContentContainer = ({
 						cursor="initial"
 						onClick={() => {}}
 					/>
-					<p>{publishedAt}</p>
+					<p>{post.publishedAt}</p>
 				</div>
 				<div className="buttons">
 					<Icon
@@ -36,7 +43,7 @@ const PostContentContainer = ({
 					/>
 				</div>
 			</div>
-			<div className="post-text">{content}</div>
+			<div className="post-text">{post.content}</div>
 		</div>
 	);
 };

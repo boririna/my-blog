@@ -1,7 +1,20 @@
-export const transformPost = (dbPost) => ({
-	id: dbPost.id,
-	title: dbPost.title,
-	content: dbPost.content,
-	imageUrl: dbPost.img_url,
-	publishedAt: dbPost.published_at,
-});
+// @ts-check
+
+import { PostInfo } from '../../classes/post_info';
+
+/**
+ *
+ * @param {*} dbPost post from the database
+ * @returns {PostInfo}
+ */
+export const transformPost = function (dbPost) {
+	const ret = new PostInfo(
+		false,
+		dbPost.id,
+		dbPost.title,
+		dbPost.img_url,
+		dbPost.content,
+		dbPost.published_at,
+	);
+	return ret;
+};

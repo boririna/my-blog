@@ -1,4 +1,5 @@
 // @ts-check
+import { PostInfo } from '../../classes/post_info';
 import { addComment, getComments, getPost } from '../api';
 import { ROLE } from '../constants';
 import { sessions } from '../sessions';
@@ -25,6 +26,7 @@ export const addPostComment = async (hash, userId, postId, content) => {
 
 	await addComment(userId, postId, content);
 
+	/** @type {PostInfo} */
 	const post = await getPost(postId);
 
 	const comments = await getComments(postId);

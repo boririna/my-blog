@@ -8,7 +8,9 @@ import { loadPostAsync } from '../../actions';
 import { selectPost } from '../../selectors';
 
 const PostContainer = ({ className }) => {
+	/** @type {PostInfo}*/
 	const post = useSelector(selectPost);
+	console.log('post', post);
 	const dispatch = useDispatch();
 	const params = useParams();
 	const isEditing = useMatch('/post/:id/edit');

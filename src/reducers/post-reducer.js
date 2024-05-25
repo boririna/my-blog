@@ -1,13 +1,16 @@
 import { ACTION_TYPE } from '../actions';
+import { MakeEmptyPostInfo, PostInfo } from '../classes/post_info';
 
-const initialPostState = {
-	id: '',
-	title: '',
-	imgageUrl: '',
-	content: '',
-	publishedAt: '',
-	comments: [],
-};
+/** @param {PostInfo} */
+const initialPostState = MakeEmptyPostInfo();
+// {
+// 	id: '',
+// 	title: '',
+// 	imageUrl: '',
+// 	content: '',
+// 	publishedAt: '',
+// 	comments: [],
+// };
 
 export const postReducer = (state = initialPostState, action) => {
 	switch (action.type) {
