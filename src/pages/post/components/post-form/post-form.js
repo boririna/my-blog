@@ -20,8 +20,8 @@ const PostFormContainer = ({
 		<div className={className}>
 			<Input defaultValue={post.imageUrl} />
 			<Input defaultValue={post.title} />
-			<img src={post.imageUrl} alt={post.title} />
-			<H2>{post.title}</H2>
+			{/* <img src={post.imageUrl} alt={post.title} />
+			<H2>{post.title}</H2> */}
 			<div className="special-panel">
 				<div className="published-at">
 					<Icon
@@ -48,7 +48,13 @@ const PostFormContainer = ({
 					/>
 				</div>
 			</div>
-			<div className="post-text">{post.content}</div>
+			<div
+				contentEditable={true}
+				suppressContentEditableWarning={true}
+				className="post-text"
+			>
+				{post.content}
+			</div>
 		</div>
 	);
 };
@@ -60,7 +66,7 @@ export const PostForm = styled(PostFormContainer)`
 	}
 
 	& .special-panel {
-		margin: -20px 0 20px;
+		margin: 20px 0;
 		font-size: 18px;
 		display: flex;
 		justify-content: space-between;
@@ -79,5 +85,6 @@ export const PostForm = styled(PostFormContainer)`
 
 	& .post-text {
 		font-size: 18px;
+		white-space: pre-line;
 	}
 `;
