@@ -1,8 +1,12 @@
 import { useRef } from 'react';
 import { SpecialPanel } from './../special-panel/special-panel';
 import { Icon, Input } from '../../../../components';
-import styled from 'styled-components';
 import { sanitizeContent } from './utils';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { savePostAsync } from '../../../../actions';
+import { useServerRequest } from '../../../../hooks';
+import styled from 'styled-components';
 
 /**
  * @param {string} className
@@ -18,11 +22,25 @@ const PostFormContainer = ({
 	const titleRef = useRef(null);
 	const contentRef = useRef(null);
 
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const requestServer = useServerRequest();
+
 	const onSave = () => {
 		const newImageUrl = imageRef.current.value;
-		const newTitleUrl = titleRef.current.value;
-		const newContentRef = sanitizeContent(contentRef.current.innerHTML);
-		console.log(newImageUrl, newTitleUrl, newContentRef);
+		const newTitle = titleRef.current.value;
+		const newContent = sanitizeContent(contentRef.current.innerHTML);
+
+		dispatch(
+			savePostAsync(requestServer, {
+				id: post.id,
+				imageUrl: newImageUrl,
+				title: newTitle,
+				content: newContent,
+			}),
+		).then(() => {
+			return navigate(`/post/${post.id}`);
+		});
 	};
 
 	if (post === undefined) {

@@ -3,6 +3,7 @@ import { H2 } from '../../../../components/h2/h2';
 import { Icon } from '../../../../components';
 import { PostInfo } from '../../../../classes/post_info';
 import { SpecialPanel } from '../special-panel/special-panel';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * @param {string} className
@@ -14,6 +15,7 @@ const PostContentContainer = ({
 	post,
 	// post: { id, title, imageUrl, content, publishedAt },
 }) => {
+	const navigate = useNavigate();
 	return (
 		<div className={className}>
 			<img src={post.imageUrl} alt={post.title} />
@@ -26,7 +28,7 @@ const PostContentContainer = ({
 						id="fa-pencil-square-o"
 						size="21px"
 						margin="0 0 0 0"
-						onClick={() => {}}
+						onClick={() => navigate(`/post/${post.id}/edit`)}
 					/>
 				}
 			/>
