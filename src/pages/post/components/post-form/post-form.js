@@ -1,6 +1,8 @@
-import styled from 'styled-components';
-import { H2 } from '../../../../components/h2/h2';
+import { useRef } from 'react';
+import { SpecialPanel } from './../special-panel/special-panel';
 import { Icon, Input } from '../../../../components';
+import styled from 'styled-components';
+import { sanitizeContent } from './utils';
 
 /**
  * @param {string} className
@@ -12,43 +14,44 @@ const PostFormContainer = ({
 	// post: { id, title, imageUrl, content, publishedAt },
 	post,
 }) => {
+	const imageRef = useRef(null);
+	const titleRef = useRef(null);
+	const contentRef = useRef(null);
+
+	const onSave = () => {
+		const newImageUrl = imageRef.current.value;
+		const newTitleUrl = titleRef.current.value;
+		const newContentRef = sanitizeContent(contentRef.current.innerHTML);
+		console.log(newImageUrl, newTitleUrl, newContentRef);
+	};
+
 	if (post === undefined) {
 		return <div>POST UNDEFINED</div>;
 	}
-	console.log('title', post.title);
+
 	return (
 		<div className={className}>
-			<Input defaultValue={post.imageUrl} />
-			<Input defaultValue={post.title} />
-			{/* <img src={post.imageUrl} alt={post.title} />
-			<H2>{post.title}</H2> */}
-			<div className="special-panel">
-				<div className="published-at">
+			<Input
+				ref={imageRef}
+				defaultValue={post.imageUrl}
+				placeholder="Изображение..."
+			/>
+			<Input ref={titleRef} defaultValue={post.title} placeholder="Заголовок..." />
+			<SpecialPanel
+				publishedAt={post.publishedAt}
+				margin="20px 0"
+				editButton={
 					<Icon
-						id="fa-calendar-o"
-						size="18px"
-						margin="0 10px 0 0"
-						cursor="initial"
-						onClick={() => {}}
-					/>
-					<p>{post.publishedAt}</p>
-				</div>
-				<div className="buttons">
-					<Icon
-						id="fa-pencil-square-o"
+						id="fa-floppy-o"
 						size="21px"
 						margin="0 0 0 0"
-						onClick={() => {}}
+						onClick={onSave}
 					/>
-					<Icon
-						id="fa-trash-o"
-						size="20px"
-						margin="0 0 0 10px"
-						onClick={() => {}}
-					/>
-				</div>
-			</div>
+				}
+			/>
+
 			<div
+				ref={contentRef}
 				contentEditable={true}
 				suppressContentEditableWarning={true}
 				className="post-text"
@@ -63,24 +66,6 @@ export const PostForm = styled(PostFormContainer)`
 	& img {
 		float: left;
 		margin: 0 20px 10px 0;
-	}
-
-	& .special-panel {
-		margin: 20px 0;
-		font-size: 18px;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	& .published-at {
-		display: flex;
-	}
-
-	& i {
-	}
-
-	& .buttons {
-		display: flex;
 	}
 
 	& .post-text {
