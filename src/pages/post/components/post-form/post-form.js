@@ -56,6 +56,7 @@ const PostFormContainer = ({
 			/>
 			<Input ref={titleRef} defaultValue={post.title} placeholder="Заголовок..." />
 			<SpecialPanel
+				id={post.id}
 				publishedAt={post.publishedAt}
 				margin="20px 0"
 				editButton={
