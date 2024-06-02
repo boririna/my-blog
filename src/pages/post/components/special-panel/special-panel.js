@@ -29,6 +29,7 @@ const SpecialPanelContainer = ({ className, id, publishedAt, editButton }) => {
 		<div className={className}>
 			<div className="published-at">
 				<Icon
+					inactive={true}
 					id="fa-calendar-o"
 					size="18px"
 					margin="0 10px 0 0"

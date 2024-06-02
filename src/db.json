@@ -84,7 +84,15 @@
       "published_at": "2014-03-30"
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "id": "dcf9",
+      "author_id": "d9e8",
+      "post_id": "004",
+      "published_at": "2038-08-28 11:00",
+      "content": "dfgdfgdfgdfg"
+    }
+  ],
   "sessions": [
     {
       "id": "bce1",
