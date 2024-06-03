@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const IconContainer = ({ className, id, ...props }) => (
+const IconContainer = ({ className, id, inactive, ...props }) => (
 	<div className={className} {...props}>
 		<i className={`fa ${id}`}></i>
 	</div>

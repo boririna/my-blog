@@ -1,7 +1,7 @@
 import { ACTION_TYPE } from '../actions';
 
 // Initial data for the app
-const initialAppState = {
+export const initialAppState = {
 	wasLogout: false,
 	modal: {
 		isOpen: false,

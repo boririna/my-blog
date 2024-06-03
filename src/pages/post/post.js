@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { useServerRequest } from '../../hooks';
 import { RESET_POST_DATA, loadPostAsync } from '../../actions';
 import { selectPost } from '../../selectors';
+import { initialAppState } from '../../reducers/app-reducer';
 
 const PostContainer = ({ className }) => {
 	/** @type {PostInfo}*/
@@ -18,7 +19,7 @@ const PostContainer = ({ className }) => {
 
 	useLayoutEffect(() => {
 		dispatch(RESET_POST_DATA);
-	}, [dispatch]);
+	}, [dispatch, isCreating]);
 
 	useEffect(() => {
 		if (isCreating) {
@@ -34,7 +35,7 @@ const PostContainer = ({ className }) => {
 				<PostForm post={post} />
 			) : (
 				<>
-					<PostContent post={post} />
+					<PostContent post={isCreating ? initialAppState : post} />
 					<Comments comments={post.comments} postId={post.id} />
 				</>
 			)}

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { SpecialPanel } from './../special-panel/special-panel';
 import { Icon, Input } from '../../../../components';
 import { sanitizeContent } from './utils';
@@ -18,8 +18,10 @@ const PostFormContainer = ({
 	// post: { id, title, imageUrl, content, publishedAt },
 	post,
 }) => {
-	const imageRef = useRef(null);
-	const titleRef = useRef(null);
+	const [imageUrlValue, setImageUrlValue] = useState(post.imageUrl);
+	const [titleValue, setTitleValue] = useState(post.title);
+	// const imageRef = useRef(null);
+	// const titleRef = useRef(null);
 	const contentRef = useRef(null);
 
 	const dispatch = useDispatch();
@@ -27,15 +29,15 @@ const PostFormContainer = ({
 	const requestServer = useServerRequest();
 
 	const onSave = () => {
-		const newImageUrl = imageRef.current.value;
-		const newTitle = titleRef.current.value;
+		// const newImageUrl = imageRef.current.value;
+		// const newTitle = titleRef.current.value;
 		const newContent = sanitizeContent(contentRef.current.innerHTML);
 
 		dispatch(
 			savePostAsync(requestServer, {
 				id: post.id,
-				imageUrl: newImageUrl,
-				title: newTitle,
+				imageUrl: imageUrlValue,
+				title: titleValue,
 				content: newContent,
 			}),
 		).then(() => {
@@ -47,14 +49,21 @@ const PostFormContainer = ({
 		return <div>POST UNDEFINED</div>;
 	}
 
+	const onImageChange = ({ target }) => setImageUrlValue(target.value);
+	const onTitleChange = ({ target }) => setTitleValue(target.value);
+
 	return (
 		<div className={className}>
 			<Input
-				ref={imageRef}
-				defaultValue={post.imageUrl}
+				defaultValue={imageUrlValue}
 				placeholder="Изображение..."
+				onChange={onImageChange}
 			/>
-			<Input ref={titleRef} defaultValue={post.title} placeholder="Заголовок..." />
+			<Input
+				defaultValue={titleValue}
+				placeholder="Заголовок..."
+				onChange={onTitleChange}
+			/>
 			<SpecialPanel
 				id={post.id}
 				publishedAt={post.publishedAt}
@@ -88,6 +97,9 @@ export const PostForm = styled(PostFormContainer)`
 	}
 
 	& .post-text {
+		min-height: 80px;
+		border: 1px solid #000;
+		border-radius: 3px;
 		font-size: 18px;
 		white-space: pre-line;
 	}
