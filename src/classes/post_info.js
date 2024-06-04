@@ -18,7 +18,7 @@ export class PostInfo {
 				throw new Error('id must be a positive number');
 			}
 			if (typeof title !== 'string' || title.trim() === '') {
-				throw new Error('title must be a non-empty string');
+				throw new Error('title must be a non-empty string id=' + id);
 			}
 			if (typeof imageUrl !== 'string' || imageUrl.trim() === '') {
 				throw new Error('imageUrl must be a non-empty string');

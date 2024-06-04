@@ -17,7 +17,9 @@ export const useServerRequest = () => {
 		(operation, ...params) => {
 			// if operation in ['register', 'authorize'] we don't send a session
 			/** @type {Array} - one of register, authorize */
-			const request = ['register', 'authorize', 'fetchPost'].includes(operation)
+			const request = ['register', 'authorize', 'fetchPost', 'fetchPosts'].includes(
+				operation,
+			)
 				? params
 				: [session, ...params];
 			// server: object with functions like 'authorize', 'logout'

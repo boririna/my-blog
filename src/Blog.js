@@ -6,6 +6,7 @@ import { setUser } from './actions';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { PostForm } from './pages/post/components';
+import { Main } from './pages/main/main';
 
 const AppColumn = styled.div`
 	display: flex;
@@ -45,7 +46,7 @@ export const Blog = ({ className }) => {
 			<Header className={className} />
 			<Page>
 				<Routes>
-					<Route path="/" element={<div>Главная страница</div>} />
+					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<Authorisation />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
