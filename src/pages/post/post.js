@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useServerRequest } from '../../hooks';
 import { RESET_POST_DATA, loadPostAsync } from '../../actions';
 import { selectPost } from '../../selectors';
-import { initialAppState } from '../../reducers/app-reducer';
+import { initialPostState } from '../../reducers/post-reducer';
 
 const PostContainer = ({ className }) => {
 	/** @type {PostInfo}*/
@@ -35,7 +35,7 @@ const PostContainer = ({ className }) => {
 				<PostForm post={post} />
 			) : (
 				<>
-					<PostContent post={isCreating ? initialAppState : post} />
+					<PostContent post={isCreating ? initialPostState : post} />
 					<Comments comments={post.comments} postId={post.id} />
 				</>
 			)}

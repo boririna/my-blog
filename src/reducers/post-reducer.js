@@ -2,7 +2,7 @@ import { ACTION_TYPE } from '../actions';
 import { MakeEmptyPostInfo, PostInfo } from '../classes/post_info';
 
 /** @param {PostInfo} */
-const initialPostState = MakeEmptyPostInfo();
+export const initialPostState = MakeEmptyPostInfo();
 // {
 // 	id: '',
 // 	title: '',

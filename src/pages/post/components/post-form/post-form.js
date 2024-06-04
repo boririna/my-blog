@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { SpecialPanel } from './../special-panel/special-panel';
 import { Icon, Input } from '../../../../components';
 import { sanitizeContent } from './utils';
@@ -20,17 +20,19 @@ const PostFormContainer = ({
 }) => {
 	const [imageUrlValue, setImageUrlValue] = useState(post.imageUrl);
 	const [titleValue, setTitleValue] = useState(post.title);
-	// const imageRef = useRef(null);
-	// const titleRef = useRef(null);
+
 	const contentRef = useRef(null);
+
+	useLayoutEffect(() => {
+		setImageUrlValue(post.imageUrl);
+		setTitleValue(post.title);
+	}, [post.imageUrl, post.title]);
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const requestServer = useServerRequest();
 
 	const onSave = () => {
-		// const newImageUrl = imageRef.current.value;
-		// const newTitle = titleRef.current.value;
 		const newContent = sanitizeContent(contentRef.current.innerHTML);
 
 		dispatch(
@@ -40,8 +42,8 @@ const PostFormContainer = ({
 				title: titleValue,
 				content: newContent,
 			}),
-		).then(() => {
-			return navigate(`/post/${post.id}`);
+		).then(({ id }) => {
+			return navigate(`/post/${id}`);
 		});
 	};
 
@@ -55,12 +57,12 @@ const PostFormContainer = ({
 	return (
 		<div className={className}>
 			<Input
-				defaultValue={imageUrlValue}
+				value={imageUrlValue}
 				placeholder="Изображение..."
 				onChange={onImageChange}
 			/>
 			<Input
-				defaultValue={titleValue}
+				value={titleValue}
 				placeholder="Заголовок..."
 				onChange={onTitleChange}
 			/>
