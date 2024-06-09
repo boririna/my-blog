@@ -9,12 +9,11 @@ const PostCardContainer = ({
 	publishedAt,
 	commentsCount,
 }) => {
-	console.log('title', title);
 	return (
 		<div className={className}>
-			<img src={imageUrl} />
+			<img src={imageUrl} alt={title} />
 			<div className="post-card-footer">
-				<h3>Заглавие</h3>
+				<h3>{title}</h3>
 				<div className="post-card-info">
 					<div className="published-at">
 						<Icon
@@ -24,8 +23,17 @@ const PostCardContainer = ({
 							margin="0 10px 0 0"
 							cursor="initial"
 						/>
-
 						<p>{publishedAt}</p>
+					</div>
+					<div className="comments-count">
+						<Icon
+							inactive={true}
+							id="fa-calendar-o"
+							size="18px"
+							margin="0 10px 0 0"
+							cursor="initial"
+						/>
+						<p>{commentsCount}</p>
 					</div>
 				</div>
 			</div>

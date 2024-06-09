@@ -15,7 +15,7 @@ export class PostInfo {
 	constructor(disableValidation, id, title, imageUrl, content, publishedAt, comments) {
 		if (!disableValidation) {
 			if (typeof id !== 'string' || id.trim() === '') {
-				throw new Error('id must be a positive number');
+				throw new Error('id must be a sting and not empty');
 			}
 			if (typeof title !== 'string' || title.trim() === '') {
 				throw new Error('title must be a non-empty string id=' + id);

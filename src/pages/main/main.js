@@ -7,28 +7,25 @@ const MainContainer = ({ className }) => {
 	const [posts, setPosts] = useState([]);
 	const requestServer = useServerRequest();
 
-	console.log('posts before useEffect', posts);
-
 	useEffect(() => {
 		requestServer('fetchPosts').then((posts) => {
 			setPosts(posts.res);
 		});
-		console.log('posts in useEffect', posts);
 	}, [requestServer]);
 
-	console.log('posts', posts);
+	console.log('imageUrl', posts);
 
 	return (
 		<div className={className}>
 			<div>Главная страница</div>
-			{posts.map(({ id, title, imagUrl, publishedAt, commentsCount }) => (
+			{posts.map((post) => (
 				<PostCard
-					key={id}
-					id={id}
-					title={title}
-					imagUrl={imagUrl}
-					publishedAt={publishedAt}
-					commentsCount={commentsCount}
+					key={post.id}
+					id={post.id}
+					title={post.title}
+					imageUrl={post.imageUrl}
+					publishedAt={post.publishedAt}
+					commentsCount={post.commentsCount}
 				/>
 			))}
 		</div>

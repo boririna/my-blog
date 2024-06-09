@@ -16,6 +16,6 @@ export const transformPost = function (dbPost) {
 		dbPost.content,
 		dbPost.published_at,
 	);
-	console.log(ret);
+
 	return ret;
 };

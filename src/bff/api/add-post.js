@@ -13,3 +13,7 @@ export const addPost = ({ title, imageUrl, content }) =>
 			published_at: generateDate(),
 		}),
 	}).then((createdPost) => createdPost.json());
+
+// body: JSON.stringify(
+// 	new PostInfo(false, '', title, imageUrl, content, generateDate(), []),
+// )
