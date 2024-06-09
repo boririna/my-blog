@@ -100,11 +100,18 @@
   ],
   "comments": [
     {
-      "id": "dcf9",
+      "id": "f513",
       "author_id": "d9e8",
       "post_id": "004",
-      "published_at": "2038-08-28 11:00",
-      "content": "dfgdfgdfgdfg"
+      "published_at": "2046-10-07 15:25",
+      "content": "Еще один коммент"
+    },
+    {
+      "id": "4382",
+      "author_id": "d9e8",
+      "post_id": "005",
+      "published_at": "2050-01-22 02:39",
+      "content": "Куку"
     }
   ],
   "sessions": [
