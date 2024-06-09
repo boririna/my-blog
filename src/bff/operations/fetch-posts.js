@@ -1,10 +1,10 @@
 import { getPosts, getComments } from '../api';
 import { getCommentsCount } from '../utils';
 
-export const fetchPosts = async () => {
-	// const [posts, comments] = await Promise.all([getPosts(), getComments()]);
-	const posts = await getPosts();
-	const comments = await getComments();
+export const fetchPosts = async (page, limit) => {
+	const [posts, comments] = await Promise.all([getPosts(page, limit), getComments()]);
+	// const posts = await getPosts(page, limit);
+	// const comments = await getComments();
 
 	return {
 		error: null,
