@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { PostCard } from './components/post-card/post-card';
 import { useServerRequest } from '../../hooks';
 import styled from 'styled-components';
-import { Pagination } from './components';
+import { Pagination, Search } from './components';
 import { PAGINATION_LIMIT } from '../../constants';
 import { getLastPageFromLinks } from './utils';
 
@@ -27,6 +27,7 @@ const MainContainer = ({ className }) => {
 	return (
 		<div className={className}>
 			<div>Главная страница</div>
+			<Search />
 			<div className="post-list">
 				{posts.map((post) => {
 					return (
