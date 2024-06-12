@@ -4,10 +4,12 @@ import { useServerRequest } from '../../hooks';
 import styled from 'styled-components';
 import { Pagination } from './components';
 import { PAGINATION_LIMIT } from '../../constants';
+import { getLastPageFromLinks } from './utils';
 
 const MainContainer = ({ className }) => {
 	const [posts, setPosts] = useState([]);
 	const [page, setPage] = useState(1);
+	const [lastPage, setLastPage] = useState(1);
 	const requestServer = useServerRequest();
 	// Если не использовать useEffect, то происходит запрос постов и обновление состояния, обновление состояния запускает ререндер, а ререндер запускает запрос постов. Получается бесконечный цикл.
 	// requestServer('fetchPosts').then((posts) => {
@@ -16,11 +18,11 @@ const MainContainer = ({ className }) => {
 
 	// Вопрос. Пустой массив постов выводится два раза и потом полученный массив постов выводится два раза в консоль-логе. Не понятно почему два раза.
 	useEffect(() => {
-		requestServer('fetchPosts', page, PAGINATION_LIMIT).then((posts) => {
-			setPosts(posts.res);
+		requestServer('fetchPosts', page, PAGINATION_LIMIT).then((postsLinks) => {
+			setPosts(postsLinks.res.posts);
+			setLastPage(getLastPageFromLinks(postsLinks.res.links));
 		});
 	}, [requestServer, page]);
-	console.log(posts);
 
 	return (
 		<div className={className}>
@@ -39,7 +41,9 @@ const MainContainer = ({ className }) => {
 					);
 				})}
 			</div>
-			<Pagination page={page} setPage={setPage} />
+			{lastPage > 1 && (
+				<Pagination page={page} lastPage={lastPage} setPage={setPage} />
+			)}
 		</div>
 	);
 };
