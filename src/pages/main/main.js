@@ -28,17 +28,17 @@ const MainContainer = ({ className }) => {
 		);
 	}, [requestServer, page, shouldSearch]);
 
-	const startDelayedDearch = useMemo(() => debounce(setShouldSearch, 2000), []);
+	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), []);
 
 	const onSearch = ({ target }) => {
 		setSearchPhrase(target.value);
-		startDelayedDearch(!shouldSearch);
+		startDelayedSearch(!shouldSearch);
 	};
 
 	return (
 		<div className={className}>
 			<Search searchPhrase={searchPhrase} onChange={onSearch} />
-			{posts.length ? (
+			{posts.length > 0 ? (
 				<div className="post-list">
 					{posts.map((post) => {
 						return (
@@ -56,7 +56,7 @@ const MainContainer = ({ className }) => {
 			) : (
 				<div className="no-posts-found">Статьи не найдены</div>
 			)}
-			{lastPage > 1 && (
+			{lastPage > 1 && posts.length && (
 				<Pagination page={page} lastPage={lastPage} setPage={setPage} />
 			)}
 		</div>
@@ -71,8 +71,8 @@ export const Main = styled(MainContainer)`
 	}
 
 	& .no-posts-found {
-		test-align: center;
+		text-align: center;
 		font-size: 18px;
-		margin-top: 40px;
+		margin: 40px;
 	}
 `;
