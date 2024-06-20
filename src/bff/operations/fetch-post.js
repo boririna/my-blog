@@ -9,7 +9,21 @@ import { getComments } from '../api/get-comments';
  */
 
 export const fetchPost = async (postId) => {
-	const post = await getPost(postId);
+	let post;
+	let error;
+
+	try {
+		post = await getPost(postId);
+	} catch (postError) {
+		error = postError;
+	}
+
+	if (error) {
+		return {
+			error: error,
+			res: null,
+		};
+	}
 
 	const comments = await getComments(postId);
 
