@@ -16,7 +16,8 @@ const PostContainer = ({ className }) => {
 	const params = useParams();
 	const isCreating = useMatch('/post');
 	const isEditing = useMatch('/post/:id/edit');
-	const [error, setError] = useState(true);
+	const [isLoading, setIsLoading] = useState(true);
+	const [error, setError] = useState(null);
 	const requestServer = useServerRequest();
 
 	useLayoutEffect(() => {
@@ -25,6 +26,7 @@ const PostContainer = ({ className }) => {
 
 	useEffect(() => {
 		if (isCreating) {
+			setIsLoading(false);
 			return;
 		}
 
@@ -33,8 +35,13 @@ const PostContainer = ({ className }) => {
 
 		dispatchPromise.then((postData) => {
 			setError(postData.error);
+			setIsLoading(false);
 		});
 	}, [dispatch, requestServer, params.id, isCreating]);
+
+	if (isLoading) {
+		return null;
+	}
 
 	return error ? (
 		<Error error={error} />
