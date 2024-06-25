@@ -7,6 +7,7 @@ import { useServerRequest } from '../../hooks';
 import { RESET_POST_DATA, loadPostAsync } from '../../actions';
 import { selectPost } from '../../selectors';
 import { initialPostState } from '../../reducers/post-reducer';
+import { Error } from '../../components';
 
 const PostContainer = ({ className }) => {
 	/** @type {PostInfo}*/
@@ -15,7 +16,7 @@ const PostContainer = ({ className }) => {
 	const params = useParams();
 	const isCreating = useMatch('/post');
 	const isEditing = useMatch('/post/:id/edit');
-	const [error, setError] = useState(null);
+	const [error, setError] = useState(true);
 	const requestServer = useServerRequest();
 
 	useLayoutEffect(() => {
@@ -26,20 +27,17 @@ const PostContainer = ({ className }) => {
 		if (isCreating) {
 			return;
 		}
-		console.assert(params !== undefined);
-		console.assert(requestServer !== undefined);
 
-		let loadResult = loadPostAsync(requestServer, params.id);
-		dispatch(loadResult).then((postData) => {
-			if (postData.error) {
-				setError(postData.error);
-			}
-			console.log('postData in Post', postData);
+		let loadResultFn = loadPostAsync(requestServer, params.id);
+		let dispatchPromise = dispatch(loadResultFn);
+
+		dispatchPromise.then((postData) => {
+			setError(postData.error);
 		});
 	}, [dispatch, requestServer, params.id, isCreating]);
 
 	return error ? (
-		<div>{error}</div>
+		<Error error={error} />
 	) : (
 		<div className={className}>
 			{isCreating || isEditing ? (

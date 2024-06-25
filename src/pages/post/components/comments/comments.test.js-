@@ -1,0 +1,72 @@
+import React from 'react';
+import { render, fireEvent, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+import { Comments } from './comments';
+import { addCommentAsync } from '../../../../actions';
+import { selectUserId } from '../../../../selectors';
+
+// Mock dependencies
+jest.mock('../../../../actions');
+jest.mock('../../../../selectors');
+jest.mock('../../../../hooks', () => ({
+	useServerRequest: jest.fn(() => jest.fn()),
+}));
+
+const mockStore = configureStore([]);
+
+describe('Comments Component', () => {
+	let store;
+
+	beforeEach(() => {
+		store = mockStore({
+			user: { id: 'user123' },
+		});
+
+		selectUserId.mockReturnValue('user123');
+	});
+
+	it('renders comments and handles new comment addition', () => {
+		const comments = [
+			{
+				id: '1',
+				author: 'Alice',
+				content: 'First comment',
+				publishedAt: '2023-06-21',
+			},
+			{
+				id: '2',
+				author: 'Bob',
+				content: 'Second comment',
+				publishedAt: '2023-06-22',
+			},
+		];
+
+		const { getByPlaceholderText, getByText } = render(
+			<Provider store={store}>
+				<Comments className="test-class" comments={comments} postId="post123" />
+			</Provider>,
+		);
+
+		// Check if the comments are rendered
+		expect(screen.getByText('First comment')).toBeInTheDocument();
+		expect(screen.getByText('Second comment')).toBeInTheDocument();
+
+		// Simulate adding a new comment
+		const textarea = screen.getByPlaceholderText('Комментарий...');
+		fireEvent.change(textarea, { target: { value: 'New comment' } });
+
+		const sendIcon = screen.getByText(
+			(content, element) => element.id === 'fa-paper-plane-o',
+		);
+		fireEvent.click(sendIcon);
+
+		expect(addCommentAsync).toHaveBeenCalledWith(
+			expect.any(Function),
+			'user123',
+			'post123',
+			'New comment',
+		);
+		expect(textarea.value).toBe('');
+	});
+});

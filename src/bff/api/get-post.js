@@ -17,7 +17,9 @@ export const getPost = async (postId) =>
 			}
 
 			const error =
-				res.status === 4 ? 'Такая страница не существует' : 'Что-то пошло не так';
+				res.status === 404
+					? 'Такая страница не существует'
+					: 'Что-то пошло не так';
 
 			return Promise.reject(error);
 		})
