@@ -7,7 +7,8 @@ import { useServerRequest } from '../../hooks';
 import { RESET_POST_DATA, loadPostAsync } from '../../actions';
 import { selectPost } from '../../selectors';
 import { initialPostState } from '../../reducers/post-reducer';
-import { Error } from '../../components';
+import { Error, PrivateContent } from '../../components';
+import { ROLE } from '../../constants';
 
 const PostContainer = ({ className }) => {
 	/** @type {PostInfo}*/
@@ -43,20 +44,21 @@ const PostContainer = ({ className }) => {
 		return null;
 	}
 
-	return error ? (
-		<Error error={error} />
-	) : (
-		<div className={className}>
-			{isCreating || isEditing ? (
-				<PostForm post={post} />
-			) : (
-				<>
-					<PostContent post={isCreating ? initialPostState : post} />
-					<Comments comments={post.comments} postId={post.id} />
-				</>
-			)}
-		</div>
-	);
+	const SpecificPostPage =
+		isCreating || isEditing ? (
+			<PrivateContent access={[ROLE.ADMIN]}>
+				<div className={className}>
+					<PostForm post={post} />
+				</div>
+			</PrivateContent>
+		) : (
+			<div className={className}>
+				<PostContent post={isCreating ? initialPostState : post} />
+				<Comments comments={post.comments} postId={post.id} />
+			</div>
+		);
+
+	return error ? <Error error={error} /> : SpecificPostPage;
 };
 
 export const Post = styled(PostContainer)`

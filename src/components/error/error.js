@@ -5,6 +5,7 @@ const Div = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	font-size: 18px;
 `;
 
 // shows error when there is no access to data due to a specific role
