@@ -1,8 +1,9 @@
 // @ts-check
 import { PostInfo } from '../../classes/post_info';
-import { addComment, getComments, getPost } from '../api';
+import { addComment, getPost } from '../api';
 import { ROLE } from '../constants';
 import { sessions } from '../sessions';
+import { getPostCommentsWithAuthor } from '../utils';
 
 /**
  * Adds a comment to a post and returns the updated post with comments.
@@ -29,13 +30,14 @@ export const addPostComment = async (hash, userId, postId, content) => {
 	/** @type {PostInfo} */
 	const post = await getPost(postId);
 
-	const comments = await getComments(postId);
+	// утилита для получения комментариев с автором, чтобы не дублировать код
+	const commentsWithAuthor = await getPostCommentsWithAuthor(postId);
 
 	return {
 		error: null,
 		res: {
 			...post,
-			comments,
+			comments: commentsWithAuthor,
 		},
 	};
 };

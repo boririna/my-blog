@@ -5,8 +5,9 @@ import { Comment } from './components/comment/comment';
 import { useDispatch, useSelector } from 'react-redux';
 import { useServerRequest } from '../../../../hooks';
 import { addCommentAsync } from '../../../../actions';
-import { selectUserId } from '../../../../selectors';
+import { selectUserId, selectUserRole } from '../../../../selectors';
 import styled from 'styled-components';
+import { ROLE } from '../../../../constants';
 
 /**
  * @typedef commentInput
@@ -24,6 +25,7 @@ import styled from 'styled-components';
 const CommentsContainer = ({ className, comments, postId }) => {
 	const [newComment, setNewComment] = useState('');
 	const userId = useSelector(selectUserId);
+	const userRole = useSelector(selectUserRole);
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
 
@@ -32,22 +34,26 @@ const CommentsContainer = ({ className, comments, postId }) => {
 		setNewComment('');
 	};
 
+	const isGuest = userRole === ROLE.GUEST;
+
 	return (
 		<div className={className}>
-			<div className="new-comment">
-				<textarea
-					name="comment"
-					value={newComment}
-					placeholder="Комментарий..."
-					onChange={({ target }) => setNewComment(target.value)}
-				></textarea>
-				<Icon
-					id="fa-paper-plane-o"
-					size="21px"
-					margin="0 0 0 10px"
-					onClick={() => onNewCommentAdd(userId, postId, newComment)}
-				/>
-			</div>
+			{!isGuest && (
+				<div className="new-comment">
+					<textarea
+						name="comment"
+						value={newComment}
+						placeholder="Комментарий..."
+						onChange={({ target }) => setNewComment(target.value)}
+					></textarea>
+					<Icon
+						id="fa-paper-plane-o"
+						size="21px"
+						margin="0 0 0 10px"
+						onClick={() => onNewCommentAdd(userId, postId, newComment)}
+					/>
+				</div>
+			)}
 
 			<div className="comments">
 				{comments.map(({ id, author, content, publishedAt }) => (
@@ -68,11 +74,11 @@ const CommentsContainer = ({ className, comments, postId }) => {
 export const Comments = styled(CommentsContainer)`
 	margin: 0 auto;
 	width: 580px;
+	margin-top: 20px;
 
 	& .new-comment {
 		display: flex;
 		width: 100%;
-		margin: 20px 0 0;
 	}
 
 	& .new-comment textarea {
