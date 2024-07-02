@@ -12,7 +12,7 @@ import { getPostCommentsWithAuthor } from '../utils';
  * @returns
  */
 export const removePostComment = async (hash, postId, id) => {
-	const accessRoles = [ROLE.ADMIN, ROLE.MODERATOR];
+	const accessRoles = [ROLE.ADMIN, ROLE.MODERATOR, ROLE.READER];
 
 	const access = await sessions.access(hash, accessRoles);
 

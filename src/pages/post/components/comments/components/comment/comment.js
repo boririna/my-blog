@@ -3,13 +3,14 @@ import { CLOSE_MODAL, openModal, removeCommentAsync } from '../../../../../../ac
 import { useDispatch, useSelector } from 'react-redux';
 import { useServerRequest } from '../../../../../../hooks';
 import styled from 'styled-components';
-import { selectUserRole } from '../../../../../../selectors';
+import { selectUserLogin, selectUserRole } from '../../../../../../selectors';
 import { ROLE } from '../../../../../../constants';
 
 const CommentContainer = ({ className, postId, id, author, content, publishedAt }) => {
 	const dispatch = useDispatch();
 	const requestServer = useServerRequest();
 	const userRole = useSelector(selectUserRole);
+	const userLogin = useSelector(selectUserLogin);
 
 	const onCommentRemove = (id) => {
 		// dispatch(removeCommentAsync(requestServer, postId, id));
@@ -24,6 +25,8 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 			}),
 		);
 	};
+
+	console.log(id, author);
 
 	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(userRole);
 
@@ -54,7 +57,7 @@ const CommentContainer = ({ className, postId, id, author, content, publishedAt 
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
-			{isAdminOrModerator && (
+			{(isAdminOrModerator || userLogin === author) && (
 				<Icon
 					id="fa-trash-o"
 					size="21px"

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { H2 } from '../h2/h2';
 import styled from 'styled-components';
 
@@ -18,4 +19,8 @@ export const Error = ({ error }) => {
 			</Div>
 		)
 	);
+};
+
+Error.propTypes = {
+	error: PropTypes.oneOfType([PropTypes.string, PropTypes.exact(null)]),
 };

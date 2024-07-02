@@ -20,6 +20,13 @@
       "password": "654321",
       "registered_at": "2043-03-21 18:41",
       "role_id": 2
+    },
+    {
+      "login": "Luna",
+      "password": "123456",
+      "registered_at": "2039-03-24 09:48",
+      "role_id": 2,
+      "id": "S0EMYuW"
     }
   ],
   "roles": [
@@ -156,11 +163,11 @@
       "id": "oa4niF8"
     },
     {
-      "author_id": "b2ee",
-      "post_id": "006",
-      "published_at": "2056-06-08 06:24",
-      "content": "sfgdfgdfgdfgdfg",
-      "id": "sKznAhC"
+      "author_id": "S0EMYuW",
+      "post_id": "005",
+      "published_at": "2062-10-24 06:51",
+      "content": "zdsdfsdfsdf",
+      "id": "_0JEvb5"
     }
   ],
   "sessions": [
@@ -174,6 +181,17 @@
         "roleId": 0
       },
       "id": 1
+    },
+    {
+      "hash": "0.70260368463717659537337567599024623632431030273438",
+      "user": {
+        "id": "d9e8",
+        "login": "irina",
+        "password": "123456",
+        "registeredAt": "2046-06-05 08:29",
+        "roleId": 0
+      },
+      "id": 2
     }
   ]
 }
